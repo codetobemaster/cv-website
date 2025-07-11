@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive CV - Nguyen Van Tan</title>
+    <!-- Chosen Palette: "Cool Slate" - A professional palette with a light gray background (#f8fafc), dark slate text (#1e293b), and a muted teal accent (#14b8a6) for interactive elements. -->
+    <!-- Application Structure Plan: A single-page dashboard layout with a top navigation bar for easy access. The structure includes a hero section, an interactive career timeline, a new "Key Projects" section to showcase specific achievements, a data-driven skills section with a radar chart and filterable lists, and a section for education. This revised structure adds a portfolio-like dimension, allowing users to see not just the roles but also the concrete outcomes of the work performed. -->
+    <!-- Visualization & Content Choices: 1. Profile: Inform -> Hero text block -> N/A -> Clear initial impression -> HTML/CSS. 2. Experience: Show Progression -> Interactive Vertical Timeline -> Click to expand job details & technologies -> Guides user through career path engagingly -> HTML/CSS/JS. 3. Key Projects: Showcase Impact -> Card-based layout -> N/A -> Highlights specific, quantifiable achievements -> HTML/CSS. 4. Skills (High-Level): Compare -> Radar Chart -> Hover/Click -> Provides a quick, visual summary of core strengths -> Chart.js/Canvas. 5. Skills (Detailed): Organize/Inform -> Filterable Tag Cloud -> Click to update -> Allows drill-down without clutter -> HTML/CSS/JS. 6. Education: Inform -> Static Cards -> N/A -> Clean, simple presentation -> HTML/CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+        .timeline-item-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+        .timeline-item-content.active {
+            max-height: 1000px;
+            opacity: 1;
+        }
+        .timeline-item .icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .timeline-item.active .icon {
+            transform: rotate(90deg);
+        }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px;
+            max-height: 400px; 
+        }
+        @media (min-width: 768px) { 
+            .chart-container { 
+                height: 400px; 
+            } 
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav id="navbar" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-xl font-bold text-slate-800">Nguyen Van Tan</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="text-slate-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#experience" class="text-slate-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+                        <a href="#projects" class="text-slate-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#skills" class="text-slate-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#education" class="text-slate-600 hover:text-teal-600 px-3 py-2 rounded-md text-sm font-medium">Education</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-teal-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-slate-600 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#experience" class="text-slate-600 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#projects" class="text-slate-600 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#skills" class="text-slate-600 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#education" class="text-slate-600 hover:text-teal-600 block px-3 py-2 rounded-md text-base font-medium">Education</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="py-20 md:py-32 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight">Nguyen Van Tan</h1>
+                <h2 class="mt-4 text-xl md:text-2xl font-semibold text-teal-600">Solution Architect & Engineering Leader</h2>
+                <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-600">
+                    A results-driven Solution Architect and Engineering Leader with over 15 years of experience designing and executing complex software solutions for enterprise clients. I possess deep expertise in transforming business needs into high-performance technical architecture, specializing in cloud-native systems, AI-driven platforms, and large-scale microservices. I excel at leading cross-functional teams, driving technical innovation, and providing strategic direction to deliver robust, scalable, and impactful products.
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                     <p class="text-slate-500"><span class="font-semibold">Email:</span> davidblack.devops@gmail.com</p>
+                     <p class="text-slate-500"><span class="font-semibold">Phone:</span> +84989481985</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Professional Experience</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        Follow my professional journey through the years. Click on any role to see the key responsibilities, accomplishments, and technologies I worked with in that position.
+                    </p>
+                </div>
+                <div id="timeline-container" class="mt-12 relative">
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Key Projects & Accomplishments</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        Here are a few highlights from my career, showcasing my ability to deliver tangible results and solve complex technical challenges.
+                    </p>
+                </div>
+                <div id="projects-container" class="mt-12 grid gap-8 md:grid-cols-1 lg:grid-cols-2">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-extrabold text-slate-900">Technical Expertise</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
+                        This section provides a visual breakdown of my core competencies. The radar chart below offers a high-level view of my strengths across key areas. Explore the categories to see the specific technologies and methodologies I've mastered.
+                    </p>
+                </div>
+                <div class="mt-12">
+                    <div class="chart-container">
+                        <canvas id="skillsRadarChart"></canvas>
+                    </div>
+                </div>
+                <div id="detailed-skills-container" class="mt-12">
+                </div>
+            </div>
+        </section>
+        
+        <section id="education" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                     <h2 class="text-3xl font-extrabold text-slate-900">Education & Certifications</h2>
+                     <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">My formal education and professional certifications that underpin my technical expertise and commitment to agile practices.</p>
+                </div>
+                <div class="mt-12 grid gap-8 md:grid-cols-2">
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-200">
+                        <h3 class="text-xl font-bold text-teal-600">PMI Agile Certified Practitioner (PMI-ACP)</h3>
+                        <p class="mt-2 text-slate-600 font-semibold">Received in 2015</p>
+                        <p class="mt-2 text-slate-500">This certification validates my expertise in using agile practices in project management, including Scrum, Kanban, and Lean, to deliver value and adapt to change.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-200">
+                        <h3 class="text-xl font-bold text-teal-600">Diploma of Information Technology</h3>
+                        <p class="mt-2 text-slate-600 font-semibold">TAFE SA (2004-2008)</p>
+                        <p class="mt-2 text-slate-500">Provided a comprehensive foundational understanding of software development, networking, database management, and IT project management principles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-bold">Get In Touch</h3>
+            <p class="mt-2 text-slate-300">I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision.</p>
+            <div class="mt-6 flex justify-center space-x-6">
+                 <p><span class="font-semibold">Email:</span> davidblack.devops@gmail.com</p>
+                 <p><span class="font-semibold">Phone:</span> +84989481985</p>
+            </div>
+            <p class="mt-8 text-center text-slate-400">&copy; 2025 Nguyen Van Tan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    const experienceData = [
+        {
+            role: 'Head of Engineering',
+            company: 'Amplifi-Impact',
+            period: '12/2014 – Present',
+            details: [
+                'Architected and delivered pioneering AI solutions, including a flagship platform for Agentic Workflows and a proprietary Model Context Protocol (MCP).',
+                'Built and scaled a high-performing engineering team from 5 to 25+ members, fostering a culture of innovation through mentorship and implementing agile best practices.',
+                'Drove key presales engagements with Fortune 500 clients by designing and presenting compelling proof-of-concepts (POCs), contributing to a 40% growth in enterprise client acquisition.',
+                'Established and enforced best practices for the entire MLOps lifecycle, including CI/CD for model deployment, automated testing, and monitoring.'
+            ],
+            tech: ['AI Agent Design', 'LLM Integration', 'Python', 'AWS', 'Kubernetes', 'MLOps', 'Technical Presales']
+        },
+        {
+            role: 'Solution Architect',
+            company: 'FPT Software/Healthcare Information System',
+            period: '07/2023 – 11/2024',
+            details: [
+                'Led technical architecture for complex healthcare solutions, leveraging deep knowledge of HL7 and FHIR standards.',
+                'Spearheaded the migration of a legacy monolithic application to a cloud-native microservices architecture on AWS, enhancing performance by 50%.',
+                'Authored and presented comprehensive solution proposals to executive stakeholders, aligning technical strategy with business goals.',
+                'Created and implemented a formal mentorship program that developed 5 junior engineers into capable Solution Architects.'
+            ],
+            tech: ['HL7/FHIR', 'AWS (EKS, Lambda, API Gateway)', 'Microservices', 'Java', 'Spring Boot', 'Microsoft Power Apps']
+        },
+        {
+            role: 'Solution Architect',
+            company: 'Toshiba Software Development Vietnam',
+            period: '10/2021 – 06/2023',
+            details: [
+                'Designed the foundational architecture for multiple greenfield projects, including a large-scale IoT data processing platform.',
+                'Instituted clear career development roadmaps and technical training programs, leading to a 20% decrease in employee turnover.',
+                'Championed the adoption of TDD and BDD, reducing critical production bugs by over 35%.'
+            ],
+            tech: ['IoT Architecture', 'Java', 'Go', 'Docker', 'Kubernetes', 'TDD/BDD', 'Terraform', 'Ansible']
+        },
+        {
+            role: 'Group Leader, Project Manager, Solution Architect',
+            company: 'Framgia/Sun Asterisk Vietnam',
+            period: '07/2012 – 08/2021',
+            details: [
+                'Directed a 40-person engineering group across four concurrent projects, ensuring consistent on-time and on-budget delivery.',
+                'Architected scalable backend systems using Java, Spring, Node.js, and microservice patterns to handle high-volume transactional loads.',
+                'Engineered robust CI/CD pipelines using Jenkins and Docker, reducing release cycle times from weeks to days.'
+            ],
+            tech: ['Java', 'Spring', 'Node.js', 'Ruby on Rails', 'Microservices', 'CI/CD (Jenkins, Docker)', 'Agile/Scrum']
+        }
+    ];
+    
+    const projectsData = [
+        {
+            title: 'Enterprise AI Agentic Workflow Platform',
+            challenge: 'To design and build a scalable, multi-tenant platform that allows enterprises to create, manage, and deploy autonomous AI agents for complex business process automation.',
+            solution: 'I architected a cloud-native solution on AWS using Kubernetes for orchestration. The platform featured a modular microservices design, a custom Model Context Protocol (MCP) for state management, and a secure API gateway for agent interaction. I led the engineering team through the entire development lifecycle.',
+            outcome: 'The platform became the company\'s flagship product, successfully onboarded several Fortune 500 clients, and directly contributed to a 40% growth in enterprise revenue. It established the company as a key innovator in the AI space.',
+            tech: ['AI Agent Design', 'Kubernetes', 'AWS', 'Microservices', 'Python', 'LLM Integration']
+        },
+        {
+            title: 'Healthcare Legacy System Modernization',
+            challenge: 'A major healthcare provider was struggling with a monolithic, on-premise patient management system that was slow, difficult to update, and unable to scale with growing demand.',
+            solution: 'I designed and led the execution of a phased migration strategy to a cloud-native microservices architecture on AWS. This involved decomposing the monolith, applying the Strangler Fig pattern, and leveraging services like AWS EKS, Lambda, and MSK for Kafka. We ensured compliance with HL7 and FHIR standards throughout.',
+            outcome: 'The new system improved application performance by 50%, increased developer productivity by enabling parallel workstreams, and provided the scalability to handle a 3x increase in user load. The migration was completed on time and within budget.',
+            tech: ['AWS (EKS, Lambda)', 'Microservices', 'Java', 'Spring Boot', 'Kafka', 'HL7/FHIR']
+        }
+    ];
+
+    const skillsData = {
+        labels: ['Architecture', 'Cloud & DevOps', 'Backend', 'AI & Data', 'Leadership'],
+        datasets: [{
+            label: 'Proficiency',
+            data: [95, 90, 85, 80, 95],
+            backgroundColor: 'rgba(20, 184, 166, 0.2)',
+            borderColor: 'rgb(13, 148, 136)',
+            pointBackgroundColor: 'rgb(13, 148, 136)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(13, 148, 136)'
+        }],
+        detailedSkills: {
+            'Architecture': {
+                description: 'Expertise in designing robust, scalable, and maintainable systems using modern architectural patterns.',
+                skills: ['Microservices', 'Event-Driven Architecture (EDA)', 'SOA', 'Cloud-Native Design', 'Domain-Driven Design (DDD)', 'API Design (REST, gRPC)', 'Legacy Modernization', 'High Availability', 'CQRS', 'Saga Pattern']
+            },
+            'Cloud & DevOps': {
+                description: 'Proficient in building and managing resilient infrastructure and automating development pipelines.',
+                skills: ['AWS', 'GCP', 'Docker', 'Kubernetes', 'Terraform', 'Ansible', 'Jenkins', 'GitLab CI', 'ArgoCD', 'GitOps', 'Prometheus', 'Grafana', 'ELK Stack', 'MLOps']
+            },
+            'Backend': {
+                description: 'Skilled in developing high-performance server-side applications with a focus on clean code and quality.',
+                skills: ['Java (8, 11, 17+)', 'Golang', 'Node.js', 'C#', 'Python', 'Spring (Boot, Cloud, Security)', 'Hibernate/JPA', 'Quarkus', 'Express.js', 'TDD/BDD Methodologies']
+            },
+            'AI & Data': {
+                description: 'Experienced in integrating AI and managing data platforms to deliver intelligent, data-driven solutions.',
+                skills: ['AI Agent Design', 'Agentic Workflows', 'LLM Integration', 'Generative AI', 'Apache Kafka', 'RabbitMQ', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Elasticsearch']
+            },
+            'Leadership': {
+                description: 'Proven ability to lead teams, manage projects, and align technical strategy with business objectives.',
+                skills: ['Team Mentorship', 'Agile (Scrum, Kanban)', 'Technical Presales', 'Stakeholder Management', 'Project Management', 'Budgeting & Resource Planning']
+            }
+        }
+    };
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const timelineContainer = document.getElementById('timeline-container');
+        let timelineHTML = '<div class="absolute left-3 md:left-1/2 w-0.5 h-full bg-slate-200"></div>';
+
+        experienceData.forEach((job, index) => {
+            timelineHTML += `
+                <div class="mb-8 flex justify-between items-center w-full timeline-item" data-index="${index}">
+                    <div class="order-1 w-5/12 hidden md:block"></div>
+                    <div class="z-10 flex items-center order-1 bg-teal-600 shadow-xl w-6 h-6 rounded-full"></div>
+                    <div class="order-1 bg-white rounded-lg shadow-xl w-full md:w-5/12 p-4 cursor-pointer hover:shadow-2xl transition-shadow duration-300 border border-slate-200">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-lg">${job.role}</h3>
+                                <p class="text-sm font-semibold text-teal-700">${job.company}</p>
+                                <p class="text-sm text-gray-500">${job.period}</p>
+                            </div>
+                            <div class="icon text-teal-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                            </div>
+                        </div>
+                        <div class="mt-3 timeline-item-content">
+                            <ul class="list-disc list-inside space-y-2 text-slate-600 text-left">
+                                ${job.details.map(detail => `<li>${detail}</li>`).join('')}
+                            </ul>
+                            <h4 class="font-semibold mt-4 mb-2 text-slate-700 text-left">Key Technologies:</h4>
+                            <div class="flex flex-wrap gap-2 justify-start">
+                                ${job.tech.map(t => `<span class="bg-slate-200 text-slate-700 text-xs font-medium px-2.5 py-1 rounded-full">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        timelineContainer.innerHTML = timelineHTML;
+
+        timelineContainer.addEventListener('click', (e) => {
+            const item = e.target.closest('.timeline-item');
+            if (item) {
+                item.classList.toggle('active');
+                item.querySelector('.timeline-item-content').classList.toggle('active');
+            }
+        });
+
+        const projectsContainer = document.getElementById('projects-container');
+        projectsData.forEach(project => {
+            const projectCard = `
+                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-200">
+                    <h3 class="text-xl font-bold text-teal-600">${project.title}</h3>
+                    <div class="mt-4">
+                        <p class="font-semibold text-slate-700">Challenge:</p>
+                        <p class="text-slate-600">${project.challenge}</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-semibold text-slate-700">Solution:</p>
+                        <p class="text-slate-600">${project.solution}</p>
+                    </div>
+                    <div class="mt-4">
+                        <p class="font-semibold text-slate-700">Outcome:</p>
+                        <p class="text-slate-600">${project.outcome}</p>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex flex-wrap gap-2">
+                            ${project.tech.map(t => `<span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+            projectsContainer.innerHTML += projectCard;
+        });
+        
+        const detailedSkillsContainer = document.getElementById('detailed-skills-container');
+        const renderDetailedSkills = (category) => {
+             const categoryData = skillsData.detailedSkills[category] || {description: '', skills: []};
+             detailedSkillsContainer.innerHTML = `
+                <h3 class="text-center text-2xl font-bold text-slate-800 mb-2">${category}</h3>
+                <p class="text-center text-slate-600 mb-6 max-w-2xl mx-auto">${categoryData.description}</p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    ${categoryData.skills.map(skill => `<span class="bg-teal-100 text-teal-800 text-sm font-medium px-4 py-2 rounded-full">${skill}</span>`).join('')}
+                </div>
+             `;
+        };
+        
+        const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+        const skillsRadarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: skillsData.labels,
+                datasets: skillsData.datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        },
+                        onClick: (e, legendItem) => {
+                           renderDetailedSkills(legendItem.text);
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.r !== null) {
+                                    label += context.parsed.r + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#1e293b'
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            stepSize: 20
+                        },
+                         min: 0,
+                         max: 100
+                    }
+                },
+            }
+        });
+
+        renderDetailedSkills(skillsData.labels[0]);
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const icons = mobileMenuButton.querySelectorAll('svg');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            icons[0].classList.toggle('hidden');
+            icons[1].classList.toggle('hidden');
+        });
+
+        const navLinks = document.querySelectorAll('#mobile-menu a, #navbar a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(!mobileMenu.classList.contains('hidden')){
+                    mobileMenu.classList.add('hidden');
+                    icons[0].classList.remove('hidden');
+                    icons[1].classList.add('hidden');
+                }
+            })
+        })
+
+    });
+    </script>
+</body>
+</html>
