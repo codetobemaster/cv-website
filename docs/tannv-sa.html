@@ -110,35 +110,44 @@
     
                     div#document {
                         color: #343b30;
-                        line-height: 16px;
+                        line-height: 1.7;
                         font-variant-ligatures: none;
+                        background: #fff;
+                        padding: 32px 0;
+                        border-radius: 12px;
+                        box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+                        font-size: 20px;
                     }
     
                     div#document .name {
                         font-weight: bold;
-                        padding: 0 0 28px 0;
-                        text-align: left;
+                        padding: 0 0 32px 0;
+                        text-align: center;
                         letter-spacing: .5px;
                         text-transform: uppercase;
                         position: relative;
+                        font-size: 36px;
+                        color: #14b8a6;
                     }
     
                     div#document .name:after {
                         content: " ";
-                        border-bottom: 1px solid #595959;
+                        border-bottom: 2px solid #14b8a6;
                         margin-bottom: 15px;
-                        height: 1px;
-                        /* width: 32px; */
-                        width: 100%; /* Updated to fit the left column width */
+                        height: 2px;
+                        width: 60px;
                         position: absolute;
-                        left: 0;
+                        left: 50%;
+                        transform: translateX(-50%);
                         bottom: 0;
                         font-size: initial;
                     }
     
                     /* CNTC */
                     div.address {
-                        text-align: left
+                        text-align: left;
+                        margin-bottom: 24px;
+                        font-size: 20px;
                     }
     
                     div.address .circle {
@@ -187,16 +196,25 @@
                     /* Heading */
                     div#document div.heading {
                         font-weight: bold;
-                        font-size: 18px;
+                        font-size: 26px;
                         text-transform: uppercase;
-                        position: relative
+                        position: relative;
+                        margin-bottom: 18px !important;
+                        color: #1e293b;
+                        background: #f8fafc;
+                        padding: 12px 0;
+                        border-radius: 8px;
+                        text-align: center;
+                        letter-spacing: 1px;
                     }
     
                     div#document div.sectiontitle {
-                        letter-spacing: 1px;
-                        word-break: keep-all;
-                        word-break: keep-all;
                         text-align: center;
+                        font-size: 24px;
+                        color: #14b8a6;
+                        font-weight: 700;
+                        margin-bottom: 8px;
+                        letter-spacing: 1px;
                     }
     
                     div#document .singlecolumn .paddedline, div#document .maincolumn .paddedline {
@@ -288,7 +306,8 @@
                     }
     
                     .degreeGap {
-                        margin-top: 5px
+                        margin-top: 10px;
+                        margin-bottom: 10px;
                     }
     
                     .txtBold {
@@ -448,7 +467,7 @@
                                         <div class="" data-section="[object Object]" data-paragraph="[object Object]">
                                             <div id="PARAGRAPH_CNTC_daae20f2-0aeb-4b81-8434-d5511f469d6c" class="paragraph PARAGRAPH_CNTC firstparagraph">
                                                 <div>
-                                                    <div class="address">
+                                                    <div class="address" style="text-align:left;">
                                                         <div class="adrs-field" dependency="EMAI">
                                                             <span class="txtBold circle">@</span>
                                                             <span class="field" id="FIELD_EMAI">davidblack.devops@gmail.com</span>
@@ -482,8 +501,8 @@
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="false" data-hidedelete="false" data-hidemove="true">
                                     <div id="SECTION_SUMM9ac5c78a-00e6-4dec-8123-3423d1618e73" class="section notdraggable" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_SUMM"><!-- react-text: 533 -->
-                                                Professional Summary<!-- /react-text -->
+                                            <div class="sectiontitle" id="SECTIONNAME_SUMM">
+                                                Professional Summary
                                             </div>
                                         </div>
                                         <div class="" data-section="[object Object]" data-paragraph="[object Object]">
@@ -598,8 +617,8 @@
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="false" data-hidedelete="false" data-hidemove="false">
                                     <div id="SECTION_EDUC27598494-f464-454e-a889-d937ef68b015" class="section education" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_EDUC"><!-- react-text: 574 -->
-                                                Education<!-- /react-text -->
+                                            <div class="sectiontitle" id="SECTIONNAME_EDUC">
+                                                Education
                                             </div>
                                         </div>
                                         <div class="wrapper" data-section="[object Object]" data-paragraph="[object Object]">
@@ -915,7 +934,8 @@
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="false" data-hidedelete="false" data-hidemove="false">
                                     <div id="SECTION_CUSTafaf2996-8b16-4f76-aa6d-a5702717bb07" class="section" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_CUST"><!-- react-text: 702 -->Hobbies
+                                            <div class="sectiontitle" id="SECTIONNAME_CUST">
+                                                Hobbies
                                                 <!-- /react-text --><a class="acr-rename ffssp cyan" data-sectionid="afaf2996-8b16-4f76-aa6d-a5702717bb07"></a>
                                             </div>
                                         </div>
