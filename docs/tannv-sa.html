@@ -1,10 +1,10 @@
 <!-- saved from url=(0067)file:///C:/Users/tan.nv_extremevn/Downloads/CV_TANNV_SA_202210.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
-    <section class="preview-container" id="previewContainer">
+    <section class="preview-container" id="previewContainer" style="display: flex; flex-direction: column; align-items: center;">
         <div class="loader-overlay loader-overlay-resume position-absolute d-none" id="resumeLoader">
             <div class="loader-img"></div>
         </div>
-        <div id="displayResume" class="modal-preview-user-select-state">
+        <div id="displayResume" class="modal-preview-user-select-state" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
             <div>
                 <style type="text/css" id="static">
                     html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
@@ -110,44 +110,35 @@
     
                     div#document {
                         color: #343b30;
-                        line-height: 1.7;
+                        line-height: 16px;
                         font-variant-ligatures: none;
-                        background: #fff;
-                        padding: 32px 0;
-                        border-radius: 12px;
-                        box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-                        font-size: 20px;
                     }
     
                     div#document .name {
                         font-weight: bold;
-                        padding: 0 0 32px 0;
-                        text-align: center;
+                        padding: 0 0 28px 0;
+                        text-align: left;
                         letter-spacing: .5px;
                         text-transform: uppercase;
                         position: relative;
-                        font-size: 36px;
-                        color: #14b8a6;
                     }
     
                     div#document .name:after {
                         content: " ";
-                        border-bottom: 2px solid #14b8a6;
+                        border-bottom: 1px solid #595959;
                         margin-bottom: 15px;
-                        height: 2px;
-                        width: 60px;
+                        height: 1px;
+                        /* width: 32px; */
+                        width: 100%; /* Updated to fit the left column width */
                         position: absolute;
-                        left: 50%;
-                        transform: translateX(-50%);
+                        left: 0;
                         bottom: 0;
                         font-size: initial;
                     }
     
                     /* CNTC */
                     div.address {
-                        text-align: left;
-                        margin-bottom: 24px;
-                        font-size: 20px;
+                        text-align: left !important;
                     }
     
                     div.address .circle {
@@ -175,8 +166,18 @@
     
                     /* break-all for Firefox */
                     div.address .adrs-field {
-                        margin-bottom: 10px;
-                        min-height: 15px
+                        margin-bottom: 12px !important;
+                        min-height: 18px;
+                    }
+    
+                    div.address .adrs-field .field {
+                        font-size: 15px !important;
+                        color: #343b30 !important;
+                        text-align: left !important;
+                        font-family: Trebuchet MS, Arial, sans-serif;
+                        /* Add spacing between items */
+                        display: inline-block;
+                        margin-bottom: 4px;
                     }
     
                     div.address .adrs-field > span.addrCircle {
@@ -196,25 +197,16 @@
                     /* Heading */
                     div#document div.heading {
                         font-weight: bold;
-                        font-size: 26px;
+                        font-size: 18px;
                         text-transform: uppercase;
-                        position: relative;
-                        margin-bottom: 18px !important;
-                        color: #1e293b;
-                        background: #f8fafc;
-                        padding: 12px 0;
-                        border-radius: 8px;
-                        text-align: center;
-                        letter-spacing: 1px;
+                        position: relative
                     }
     
                     div#document div.sectiontitle {
-                        text-align: center;
-                        font-size: 24px;
-                        color: #14b8a6;
-                        font-weight: 700;
-                        margin-bottom: 8px;
                         letter-spacing: 1px;
+                        word-break: keep-all;
+                        word-break: keep-all;
+                        text-align: center;
                     }
     
                     div#document .singlecolumn .paddedline, div#document .maincolumn .paddedline {
@@ -225,10 +217,19 @@
                     /* Common style for left and right box */
     
                     div#document .left-box {
-                        padding: 5px;
+                        padding: 16px 12px 16px 24px; /* more left padding, less right */
                         display: table-cell;
                         position: relative;
-                        overflow: hidden
+                        overflow: hidden;
+                        text-align: left; /* ensure left alignment */
+                        align-items: flex-start ; /* override any center alignment */
+                        /* Increase width and ensure text is visible */
+                        width: 260px !important;
+                        min-width: 220px;
+                        max-width: 320px;
+                        color: #343b30 !important; /* Ensure dark text */
+                        background: transparent !important;
+                        overflow: visible !important;
                     }
     
                     div#document .right-box {
@@ -240,15 +241,15 @@
                     }
     
                     div#document .left-box > .section:first-child {
-                        padding-top: 0 !important
+                        padding-top: 0 
                     }
     
                     div#document .right-box > .section:first-child {
-                        padding-top: 0 !important
+                        padding-top: 0 
                     }
     
                     div#document .right-box > .section:first-child .heading, div#document .left-box > .section:first-child .heading {
-                        margin-bottom: 10px !important
+                        margin-bottom: 10px 
                     }
     
                     /* background color of left/right box */
@@ -306,8 +307,7 @@
                     }
     
                     .degreeGap {
-                        margin-top: 10px;
-                        margin-bottom: 10px;
+                        margin-top: 5px
                     }
     
                     .txtBold {
@@ -354,7 +354,7 @@
                     }
     
                     div#document div.firstparagraph {
-                        margin-top: 0 !important
+                        margin-top: 0 
                     }
     
                     div#document div.paragraph {
@@ -435,15 +435,15 @@
                     }
     
                     div#document div.topsection, div#document .parentContainer {
-                        margin-left: 0px !important;
-                        margin-right: 0px !important;
+                        margin-left: 0px ;
+                        margin-right: 0px ;
                     }
                 </style>
             </div>
             <div id="document" class="document fontsize fontface vmargins hmargins pagesize MLC1" style="margin: 0 auto; display: flex; flex-direction: column; align-items: center;">
-                <div class="SortableList">
-                    <div id="CONTAINER_PARENT_0" class="topsection">
-                        <div id="CONTAINER_0" class="left-box">
+                <div class="SortableList" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                    <div id="CONTAINER_PARENT_0" class="topsection" style="width: 100%; display: flex; justify-content: center;">
+                        <div id="CONTAINER_0" class="left-box" style="display: flex; flex-direction: column; align-items: flex-start;">
                             <div data-react-beautiful-dnd-draggable="0" class="SortableItem pr SortableItem-sibling">
                                 <div class="wrapper-bg pa dn"></div>
                                 <section class="wrapper wrapper-contact" data-section="[object Object]" data-hidedelete="true" data-hidemove="true">
@@ -453,7 +453,7 @@
                                             <div id="PARAGRAPH_NAME_1626f10a-ea4f-4dcc-8127-df28021d9c9d" class="paragraph PARAGRAPH_NAME firstparagraph">
                                                 <div>
                                                     <div class="name" style="text-align:center;">
-                                                        <div class="field" id="FIELD_FNAM" dependency="FNAM"> Nguyen Van
+                                                        <div class="field" id="FIELD_FNAM" dependency="FNAM" style="text-align:center;"> Nguyen Van
                                                             Tan
                                                         </div>
     
@@ -467,7 +467,7 @@
                                         <div class="" data-section="[object Object]" data-paragraph="[object Object]">
                                             <div id="PARAGRAPH_CNTC_daae20f2-0aeb-4b81-8434-d5511f469d6c" class="paragraph PARAGRAPH_CNTC firstparagraph">
                                                 <div>
-                                                    <div class="address" style="text-align:left;">
+                                                    <div class="address" style="text-align:center;">
                                                         <div class="adrs-field" dependency="EMAI">
                                                             <span class="txtBold circle">@</span>
                                                             <span class="field" id="FIELD_EMAI">davidblack.devops@gmail.com</span>
@@ -495,13 +495,13 @@
                                 <div class="acrs-bdr pa dn"></div>
                                 <a class="text-link acr acr-edit dn"><i class="fa fa-pencil"></i></a></div>
                         </div>
-                        <div id="CONTAINER_1" class="right-box">
+                        <div id="CONTAINER_1" class="right-box" style="display: flex; flex-direction: column; align-items: center;">
                             <div data-react-beautiful-dnd-draggable="0" class="SortableItem pr SortableItem-sibling">
                                 <div class="wrapper-bg pa dn"></div>
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="false" data-hidedelete="false" data-hidemove="true">
                                     <div id="SECTION_SUMM9ac5c78a-00e6-4dec-8123-3423d1618e73" class="section notdraggable" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_SUMM">
+                                            <div class="sectiontitle" id="SECTIONNAME_SUMM" style="text-align:center;">
                                                 Professional Summary
                                             </div>
                                         </div>
@@ -509,18 +509,18 @@
                                             <div id="PARAGRAPH_SUMM_257101cf-de45-4084-a1a2-231de19ad5b0" class="paragraph firstparagraph">
                                                 <div>
                                                     <div class="" id="FIELD_FRFM">
-                                                        <p>I have over 15 years of experience in software development, including more than 10 years as a Technical Leader, Project Manager, Team Leader, and most recently as a Solution Architect (6 years). I also have over 1 year of experience in Technical Presales.</p>
-    <p>I have extensive experience with various software architectures, including monolithic, SOA, microservices, event-driven, and queue-based systems. I have a solid understanding of software quality attributes, SOLID principles, and architectural evaluation.</p>
-    <p>
-        My main expertise is in Java backend development, Spring Boot, cloud, and microservices.
-    </p>
-    <p>
-        I have worked with popular messaging systems such as JMS, ActiveMQ, RabbitMQ, Apache Kafka, Amazon SNS, and SQS.
-    </p>
-    <p>
-        I am proficient in AWS Cloud architecture, and experienced with Ansible, CloudFormation, Terraform, Kubernetes, and Docker orchestration. I also have experience with monitoring systems like Grafana and Prometheus, using infrastructure-as-code tools.
-    </p>
-                                                        
+                                                        <p>
+                                                            Solution Architect and Engineering Leader with 15+ years of experience in software development, technical leadership, and project management. Expert in designing scalable enterprise solutions, leading cross-functional teams, and driving digital transformation for banking, healthcare, and technology sectors.
+                                                        </p>
+                                                        <p>
+                                                            Specialized in cloud-native architectures, microservices, event-driven systems, and agentic AI workflows. Deep expertise in Java backend, Spring Boot, AWS, Kubernetes, and DevOps automation. Skilled in architectural evaluation, trade-off analysis, and aligning technology with business strategy.
+                                                        </p>
+                                                        <p>
+                                                            Adept at technical presales, proposal creation, and stakeholder engagement. Experienced in mentoring engineers, establishing best practices, and fostering a culture of innovation and continuous improvement.
+                                                        </p>
+                                                        <p>
+                                                            Passionate about leveraging modern technologies to solve complex business challenges, optimize processes, and deliver scalable, high-quality solutions.
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -531,14 +531,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="CONTAINER_PARENT_1" class="parentContainer" style="min-height: 1231px;">
-                        <div id="CONTAINER_2" class="left-box">
+                    <div id="CONTAINER_PARENT_1" class="parentContainer" style="min-height: 1231px; width: 100%; display: flex; justify-content: center;">
+                        <div id="CONTAINER_2" class="left-box" style="display: flex; flex-direction: column; align-items: flex-start;">
                             <div data-react-beautiful-dnd-draggable="0" class="SortableItem pr SortableItem-sibling">
                                 <div class="wrapper-bg pa dn"></div>
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="false" data-hidedelete="false" data-hidemove="false">
                                     <div id="SECTION_HILT530f931a-09e1-4fef-8653-b9d1d59f1865" class="section" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_HILT">
+                                            <div class="sectiontitle" id="SECTIONNAME_HILT" style="text-align:center;">
                                                 Technical Stack
                                             </div>
                                         </div>
@@ -617,7 +617,7 @@
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="false" data-hidedelete="false" data-hidemove="false">
                                     <div id="SECTION_EDUC27598494-f464-454e-a889-d937ef68b015" class="section education" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_EDUC">
+                                            <div class="sectiontitle" id="SECTIONNAME_EDUC" style="text-align:center;">
                                                 Education
                                             </div>
                                         </div>
@@ -652,14 +652,16 @@
                                                     <div>
                                                         <b>Diploma of Information Technology</b> – This nationally recognised qualification provides advanced skills in software development, programming, and IT project management. Graduates are equipped to design, develop, and manage software solutions, and are prepared for roles such as software developer, systems analyst, or IT project coordinator.<br><br>
                                                         <b>Key Learnings:</b>
-                                                        <ul style="margin-left:16px;">
-                                                            <li>Developing advanced software applications using industry-standard programming languages and frameworks</li>
-                                                            <li>Designing and implementing databases and managing data security</li>
-                                                            <li>Applying software development methodologies and project management principles</li>
-                                                            <li>Understanding cloud computing, networking, and IT infrastructure</li>
-                                                            <li>Collaborating in agile teams and communicating with stakeholders</li>
-                                                            <li>Ensuring software quality through testing, debugging, and documentation</li>
-                                                            <li>Adhering to professional, ethical, and legal standards in ICT</li>
+                                                        <ul style="margin-left:10px;">
+                                                            <li>Design, develop, and test advanced software applications using industry-standard programming languages and frameworks.</li>
+                                                            <li>Apply object-oriented programming principles and software design patterns to solve complex problems.</li>
+                                                            <li>Develop web applications and user interfaces using modern frontend and backend technologies.</li>
+                                                            <li>Design, implement, and manage relational and NoSQL databases, ensuring data integrity and security.</li>
+                                                            <li>Apply project management methodologies and agile practices to deliver IT projects successfully.</li>
+                                                            <li>Collaborate effectively in teams, communicate with stakeholders, and document technical solutions.</li>
+                                                            <li>Ensure software quality through testing, debugging, and version control.</li>
+                                                            <li>Understand and apply cybersecurity principles and best practices in software development.</li>
+                                                            <li>Adhere to professional, ethical, and legal standards in ICT environments.</li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -672,14 +674,15 @@
                             </div>
                         </div>
     
-                        <div id="CONTAINER_3" class="right-box">
+                        <div id="CONTAINER_3" class="right-box" style="display: flex; flex-direction: column; align-items: center;">
                             <div data-react-beautiful-dnd-draggable="0" class="SortableItem pr SortableItem-sibling">
                                 <div class="wrapper-bg pa dn"></div>
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="true" data-hidedelete="false" data-hidemove="false">
                                     <div id="SECTION_EXPR983f00cb-dcc0-4252-b9e0-c59b715113cb" class="section" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_EXPR">Work
-                                                History<!-- /react-text --><a class="acr-rename ffssp cyan" data-sectionid="983f00cb-dcc0-4252-b9e0-c59b715113cb"></a>
+                                            <div class="sectiontitle" id="SECTIONNAME_EXPR" style="text-align:center;">
+                                                Work History
+                                                <!-- /react-text --><a class="acr-rename ffssp cyan" data-sectionid="983f00cb-dcc0-4252-b9e0-c59b715113cb"></a>
                                             </div>
                                         </div>
                                         <div class="sortableInner">
@@ -725,7 +728,48 @@
                                                 </div>
                                                 <div class="acrs-bdr pa dn"></div>
                                             </div>
-                                            <!-- ...existing code... -->
+                                            <!-- Techcombank Solution Architect (newly added) -->
+                                            <div class="SortableItem pr">
+                                                <div class="wrapper-bg pa dn"></div>
+                                                <div class="wrapper" data-section="[object Object]" data-paragraph="[object Object]">
+                                                    <div class="paragraph">
+                                                        <div>
+                                                            <div class="singlecolumn">
+                                                                <span class="paddedline" dependency="COMP|JCIT|JSTA|JTIT|JSTD|EDDT">
+                                                                    <span class="companyname txtBold" id="FIELD_COMP">Techcombank</span>
+                                                                    <span dependency="COMP+JTIT">- </span>
+                                                                    <span class="jobtitle txtBold" id="FIELD_JTIT">Solution Architect</span>
+                                                                    <br dependency="COMP+JTIT">
+                                                                    <span class="joblocation jobcity txtItl" id="FIELD_JCIT">Hà Nội</span>
+                                                                    <span dependency="JCIT+JSTA">, </span>
+                                                                    <span class="joblocation jobstate txtItl" id="FIELD_JSTA">Vietnam</span>
+                                                                    <span dependency="JCIT+JSTA" class="septr"></span>
+                                                                    <span class="jobdates txtItl" id="FIELD_JSTD" format="%m/%Y">12/2024</span>
+                                                                    <span dependency="JSTD+EDDT"> - </span>
+                                                                    <span class="jobdates txtItl" id="FIELD_EDDT" format="%m/%Y">07/2025</span>
+                                                                </span>
+                                                                <span class="jobline" id="FIELD_JDES">
+                                                                    <ul>
+                                                                        <li>Designed, proposed, and defended technical solutions for business initiatives and projects, ensuring alignment with Techcombank's enterprise architecture and technology roadmap.</li>
+                                                                        <li>Collaborated with business teams, BAs, development teams, and enterprise architects to gather and analyze functional and non-functional requirements.</li>
+                                                                        <li>Led the development of Proposed Architecture Documents (PAD), including high-level and detailed architecture, data flow, integration, security, infrastructure, and technology stack.</li>
+                                                                        <li>Presented and defended solutions before the Design Authority Board (DAB/Light DAB), addressing technical, security, cost, and risk challenges.</li>
+                                                                        <li>Supported development teams during implementation, supervised architecture compliance, reviewed code for key modules, and resolved technical issues.</li>
+                                                                        <li>Updated as-built architecture documents, supported operations during go-live, and coordinated with EA to update the enterprise architecture repository.</li>
+                                                                    </ul>
+                                                                    <h3>SKILLS:</h3>
+                                                                    <ul>
+                                                                        <li>Solution architecture, enterprise architecture alignment, business analysis, technical documentation, integration models, security design, infrastructure planning, cloud-native solutions, microservices, API design, stakeholder communication, architecture governance.</li>
+                                                                        <li>Tech stack: Java, Spring Boot, AWS, Kubernetes, Terraform, CI/CD, API Gateway, Kafka, Oracle, PostgreSQL.</li>
+                                                                    </ul>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="acrs-bdr pa dn"></div>
+                                            </div>
+                                            <!-- FPT Software/Healthcare Information System -->
                                             <div class="SortableItem pr">
                                                 <div class="wrapper-bg pa dn" style="left: -80px; right: -80px;"></div>
                                                 <div class="wrapper" data-section="[object Object]" data-paragraph="[object Object]">
@@ -789,12 +833,12 @@
       </div>
     
     <br>
-    <div class="singlecolumn">
+    <div class="singlecolumn" style="text-align:left;">
                                 <span class="paddedline" dependency="COMP|JCIT|JSTA|JTIT|JSTD|EDDT">
                                     <span class="companyname txtBold" id="FIELD_COMP">Framgia/Sun Asterisk Vietnam</span>
                                     <span dependency="COMP+JTIT">- </span><span class="jobtitle txtBold" id="FIELD_JTIT">Group Leader, Project Manager, Solution Architect</span>
                                     <br dependency="COMP+JTIT">
-                                    <span class="joblocation jobcity txtItl" id="FIELD_JCIT">Từ Liêm</span><span dependency="JCIT+JSTA">, </span>
+                                    <span class="joblocation jobcity txtItl" id="FIELD_JCIT">Từ Liêm</span><span dependency="JCIT+SSTA">, </span>
                                     <span class="joblocation jobstate txtItl" id="FIELD_JSTA">Hà Nội</span>
                                     <span dependency="JCIT+JSTA" class="septr"></span>
                                     <span class="jobdates txtItl" id="FIELD_JSTD" format="%m/%Y">07/2012</span><span dependency="JSTD+EDDT"> - </span><span class="jobdates txtItl" id="FIELD_EDDT" format="%m/%Y">08/2021</span>
@@ -934,7 +978,7 @@
                                 <section class="wrapper" data-section="[object Object]" data-hideedit="false" data-hidedelete="false" data-hidemove="false">
                                     <div id="SECTION_CUSTafaf2996-8b16-4f76-aa6d-a5702717bb07" class="section" data-section="[object Object]">
                                         <div class="heading heading">
-                                            <div class="sectiontitle" id="SECTIONNAME_CUST">
+                                            <div class="sectiontitle" id="SECTIONNAME_CUST" style="text-align:center;">
                                                 Hobbies
                                                 <!-- /react-text --><a class="acr-rename ffssp cyan" data-sectionid="afaf2996-8b16-4f76-aa6d-a5702717bb07"></a>
                                             </div>
@@ -942,7 +986,9 @@
                                         <div class="" data-section="[object Object]" data-paragraph="[object Object]">
                                             <div id="PARAGRAPH_CUST_3a63aada-5741-4083-80b4-e4667a01f9a9" class="paragraph firstparagraph">
                                                 <div>
-                                                    <div class="field singlecolumn" id="FIELD_FRFM"><p>Reading books, comics, backpacking, shopping, jogging, cooking with family, discussing technology, and sharing knowledge.</p></div>
+                                                    <div class="field singlecolumn" id="FIELD_FRFM" style="text-align:center;">
+                                                        <p>Reading books, comics, backpacking, shopping, jogging, cooking with family, discussing technology, and sharing knowledge.</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
